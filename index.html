@@ -74,7 +74,7 @@
 	YUI().use('yql', 'event-valuechange', function (Y) {
 		var currs = ['USD', 'EUR', 'SEK', 'GBP'],
 			ncurrs = currs.length,
-			pairs = '',
+			pairs = [],
 			rates = {},
 			i = 0, j,
 			listhtml = '';
@@ -83,14 +83,11 @@
 			listhtml += Y.Lang.sub('<li><label for="{c}">{c}</label><input id="{c}" value="0" type="number" min="0" /></li>', {c: currs[i]});
 			for (j = 0; j < ncurrs; j++) {
 				if (i !== j) {
-					if (pairs) {
-						pairs += '","';
-					}
-					pairs += currs[i] + currs[j];
+					pairs.push(currs[i] + currs[j]);
 				}
 			}
 		}
-		Y.YQL('select id, Rate from yahoo.finance.xchange where pair in ("' + pairs + '")', function (r) {
+		Y.YQL('select id, Rate from yahoo.finance.xchange where pair = "' + pairs + '"', function (r) {
 			Y.Array.each(r.query.results.rate, function (o) {
 				rates[o.id] = parseFloat(o.Rate);
 			});
