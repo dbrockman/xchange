@@ -5,62 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
 	<title>xchange currency converter</title>
 	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.3.0/build/cssreset/reset-min.css&3.3.0/build/cssfonts/fonts-min.css">
-	<style type="text/css">
-	body {
-		margin: auto;
-		width: 200px;
-		color: #333;
-	}
-	ul {
-		margin: 3em 0 2em;
-	}
-	li {
-		margin-bottom: 1em;
-	}
-	label {
-		display: inline-block;
-		text-indent: 20px;
-		width: 75px;
-		background: url(data:image/gif;base64,R0lGODlhEAAQAMZwAEyUSFCXTFGYTlKZTlOaT1OaUFWbUVecU1meVlqfVlygWF2hWV+iW2WmYGmqZWWsYGysZ2euY2+ua3OxbnOyb3Szb3e0c264aXq2dXu2dnu3d3y3d3a6cny4eH25eX+5eoO4gH+6e4C7e4G7fIG7fYK7fYK8fYO9foS9f4W+f4W+gIPAfoa/gYTAfofAgoXBf4XBgIfBgojBg4fCgorChIrChYrDhYvDhozDh5HEi5fClZLGjJLHjZPIjpTIj5XJkJbKkZfLkZfLkpjLk5jMk5nMlJrNlJvNlpzOl6DNnKfQpJ3Vlp7Wl5/XmKDXmaLXnKLYm6PYnaXZn6faoajaoqnbo7LYrqrco6/cqrXasrDdqrDdq7Heq7LerLLfrLPfrbTfr7Xfr7bgsLbgsbvet7bhsbfhsbfisrfis77gucTkwcjnw8jnxN/u3d3z2fj89////////////////////////////////////////////////////////////////yH5BAEKAH8ALAAAAAAQABAAAAeogH+Cg4M3hIeHNEcqiIgyRmhDG42DLkVnV2I7E5QsRGZVUBZgOA6IKUJlNjBOTVJeJAqEJ0Bjbm9KLVJdIgmEJj9iNW86bTNcIQoLgyU+YlQvSm0gXB8JbB0DfyI9YVNNTCsxWx4RbGppBH8oKEhfFUtRWh0ca1kXCIMiG0FcT1obHljJEQAAIQxJKPDAksGAhgKURpCBgEHAAUqCHDSQEAAjIQYeBQUCADs=) no-repeat 0 2px;
-	}
-	label[for=USD] {
-		background-image: url(data:image/gif;charset=UTF-8;base64,R0lGODlhEAALANUAAGNjtvr6+vb29fHx8fxGRvkQEP15eatjSuNjSjx6+TV0+f2Kd+np6dvb2PxUVPx4YttjSvsrK5q7/PxlZrpjSvw6Oubm5e7u7sljSgR09Z1jSvT080iB+gBMtkF9+vofHwBpu/f39uLi3/syMtVjSqG+/C9y+Ozs7KLA/GNlwPyBbO3t6gNx5QArs/2XhpGRgKysn+z+/rS0qPR0XuXl/P7KwcnJwf39Wzh3+f7+/fv/+vHx7wNv4df+/f3h3GNnxCH5BAAAAAAALAAAAAAQAAsAAAaMwJ/wl0oBjqoHYgmB/HIoXSkgoQYCoawA9kNxOJ5EAmcyTByEiouUmnoEiYspMxhcTreNrR1OKOYgaBUjEQsYAAEJAwonLCIddwwMFj0yABI4fzwgHS2DER8fCwciAQIbG3aRkxYNPi8qNWZoaRGgBbgqGg0BMVqoqTsrNBYiM0sITU0kGBQUBwca0kEAOw==);
-	}
-	label[for=EUR] {
-		background-image: url(data:image/gif;charset=UTF-8;base64,R0lGODlhEAALALMAAExbpTY9bEpUmENLh2R5xlNjs+LNb3Z5jFVlun2Am1FhrVlqtFdosl1wu0NPkD9GeyH5BAAAAAAALAAAAAAQAAsAAARYUEjp3LgvvxAE+WDTMIyiAEJHIGyhJEZCOYDKIoVxAoZQ1Y4VK7FDHX6BYGGpA6AEBuSAYHo5KcdBbdAA7HqSqGXbdToPhqNFG3goFnCSy2R2tDV4jl4fAQA7);
-	}
-	label[for=SEK] {
-		background-image: url(data:image/gif;charset=UTF-8;base64,R0lGODlhEAALANUAAEaOsv7jdQAAMvnUO/PJGzOCqSx8pBlsovXMI+WLAFydvWulw0yStf29APXRPfjSNRJpnRxxoDN9qQAkbOybADmFqz2Jrg1plgAJVvrWQEOLsGaiwCV5ogAAQ/3bUfvXRvbOK3uwyv7dWffQL1iZuWCfvgAwdP3cVAAAIfzZSwAZY/zaT3muyfbPMv3BAAATXffWS+2hAFOWtyN3of3cU/jYUFCTrvnZVViWwwBBf1ybu/LHFP3icPvZSTCAqABDgSH5BAAAAAAALAAAAAAQAAsAAAaMwJ/w52o0TKbJRPXCYDq/UIgVCPAWi01JR5IxoKGSQnTyMAAaS8VnAHRyLAWunLKl1waOpuMKkD0pHxkDDyMgCAgOCQ0BNCuBg4WHCASKDTwrPYKEhpQEOy0JJgtnkWwcEQcQEBIdExsAFpwGMxEREBcXBigTYiQ3NTBoFRUFbLtMTjEUFB0CzyjR0UEAOw==);
-	}
-	label[for=GBP] {
-		background-image: url(data:image/gif;charset=UTF-8;base64,R0lGODlhEAALAMQAAP5RTlBlsQAUbZC20/mRjc3V6vg0NZhLaf39+xgrjrrP7b+ZtaGt1vyur+pgVfmFfGGDwYqZz/5jYnubxP/r6jxSrIUbN3GEx9vh9Kxhf+G+32RztcLE3dnd7f7+/////yH5BAAAAAAALAAAAAAQAAsAAAWBYKRMUNllWRcEFXRMTONhDOMRhBdF3IMMEEWj8Yl8JJLPpUH4MBIQRkTz+BwBR0qhckl0PNYwABv+eAoZAnLMNrjdAMu3/HGHEfhtJFCgJO11CwkBAhUMHw8EG3UGCBUIBA4RAgMeDxwXFx5jCCscCA4bEwcBCaYFFhYFAqwJAwkhADs=);
-	}
-	input {
-		border: 1px solid #ddd;
-		border-top-color: #aaa;
-		border-left-color: #aaa;
-		padding: 2px;
-		font-size: 108%;
-		color: #333;
-		width: 100px;
-	}
-	#loading {
-		display: inline-block;
-		background-color: #fff1a8;
-		padding: 3px 5px;
-		font-weight: bold;
-		position: absolute;
-		top: 0;
-		left: 50%;
-		margin-left: -40px;
-		-webkit-border-bottom-right-radius: 3px;
-		-webkit-border-bottom-left-radius: 3px;
-		-moz-border-radius-bottomright: 3px;
-		-moz-border-radius-bottomleft: 3px;
-		border-bottom-right-radius: 3px;
-		border-bottom-left-radius: 3px;
-	}
-	</style>
+	<link rel="stylesheet" type="text/css" href="xchange.css">
 </head>
 <body>
 	<a href="http://github.com/dbrockman/xchange"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
