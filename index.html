@@ -10,50 +10,7 @@
 <body>
 	<a href="http://github.com/dbrockman/xchange"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 	<p id="loading">Loading...</p>
-	<script src="http://yui.yahooapis.com/combo?3.3.0/build/yui/yui-min.js&3.3.0/build/loader/loader-min.js"></script>
-	<script>
-	YUI().use('yql', 'event-valuechange', function (Y) {
-		var currs = ['USD', 'EUR', 'SEK', 'GBP'],
-			ncurrs = currs.length,
-			pairs = [],
-			rates = {},
-			i = 0, j,
-			listhtml = '';
-
-		for (; i < ncurrs; i++) {
-			listhtml += Y.Lang.sub('<li><label for="{c}">{c}</label><input id="{c}" value="0" type="number" min="0" /></li>', {c: currs[i]});
-			for (j = 0; j < ncurrs; j++) {
-				if (i !== j) {
-					pairs.push(currs[i] + currs[j]);
-				}
-			}
-		}
-		Y.YQL('select id, Rate from yahoo.finance.xchange where pair = "' + pairs + '"', function (r) {
-			Y.Array.each(r.query.results.rate, function (o) {
-				rates[o.id] = parseFloat(o.Rate);
-			});
-			Y.one('#loading').remove(true);
-			Y.one('body').insert('<ul>' + listhtml + '</ul>');
-			Y.one('input').focus();
-			Y.all('input').on('valueChange', function (e) {
-				var amount = parseFloat(e.newVal), src = e.currentTarget.get('id'), dest, i = 0;
-				for (amount = Y.Lang.isNumber(amount) && amount > 0 ? amount : 0; i < ncurrs; i++) {
-					dest = currs[i];
-					if (dest !== src) {
-						this.item(i).set('value', Math.round(amount * rates[src + dest] * 100) / 100);
-					}
-				}
-			});
-		});
-	});
-
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-20878765-1'], ['_trackPageview']);
-	(function () {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		document.body.appendChild(ga);
-	}());
-	</script>
+	<script src="http://yui.yahooapis.com/combo?3.3.0/build/yui/yui-min.js&3.3.0/build/oop/oop-min.js&3.3.0/build/jsonp/jsonp-min.js&3.3.0/build/jsonp/jsonp-url-min.js&3.3.0/build/yql/yql-min.js&3.3.0/build/dom/dom-base-min.js&3.3.0/build/dom/selector-native-min.js&3.3.0/build/dom/selector-css2-min.js&3.3.0/build/event-custom/event-custom-min.js&3.3.0/build/event/event-base-min.js&3.3.0/build/node/node-base-min.js&3.3.0/build/event/event-synthetic-min.js&3.3.0/build/event/event-focus-min.js&3.3.0/build/event-valuechange/event-valuechange-min.js"></script>
+	<script src="xchange.js"></script>
 </body>
 </html>
